@@ -1,0 +1,28 @@
+
+<web-app>
+   
+   
+
+  
+  <display-name>Market Limit</display-name>
+  
+  
+  <session-config>
+    <file-store>WEB-INF/sessions</file-store>
+  </session-config>
+  
+  
+  
+  <servlet>
+    <servlet-name>invoke</servlet-name>
+    <servlet-class>com.terapico.naf.InvokeServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>invoke</servlet-name>
+    <url-pattern>/**/</url-pattern>
+  </servlet-mapping>
+   
+  
+  
+</web-app>
