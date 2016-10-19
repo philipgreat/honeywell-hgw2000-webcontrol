@@ -1,0 +1,5 @@
+{
+  "msgid":"{messageid}",
+  "action":"request",
+  "subaction":" heartbeat"
+}
