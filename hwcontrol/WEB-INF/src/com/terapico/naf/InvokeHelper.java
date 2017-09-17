@@ -1,27 +1,19 @@
 package com.terapico.naf;
 
+import hwcontrol.Action;
+import hwcontrol.Field;
+import hwcontrol.Form;
+import hwcontrol.MethodIndex;
+
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.terapico.naf.parameter.Parameter;
-import com.terapico.naf.parameter.ParameterManager;
-import com.terapico.naf.parameter.PersistantParameterManager;
-
-import hwcontrol.Action;
-import hwcontrol.Field;
-import hwcontrol.Form;
-import hwcontrol.MethodIndex;
 public class InvokeHelper {
 	
 	//ParameterManager manager;

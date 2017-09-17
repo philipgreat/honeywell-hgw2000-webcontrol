@@ -11,5 +11,11 @@
 	<classpathentry kind="lib" path="lib/log4j-1.2.12.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/mongo-java-driver-2.12.2.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-annotations-2.7.3-sources.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-annotations-2.7.3.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-core-2.7.3-sources.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-core-2.7.3.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-databind-2.7.3-sources.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-databind-2.7.3.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import hwcontrol.ExecutionResult;
 import hwcontrol.HomeControl;
+import hwcontrol.HomeControlAPI;
 
 public class InvokeServlet extends HttpServlet {
 	
@@ -45,7 +46,7 @@ public class InvokeServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HomeControl test = HomeControl.instance();
+		HomeControlAPI test = HomeControl.instance();
 		
 		logInfo(request.getRequestURI());
 		BaseInvokeResult result =helper.getResult(test,request, response);
