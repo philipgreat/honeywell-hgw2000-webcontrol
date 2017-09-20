@@ -243,6 +243,10 @@ public class CubeClient extends BaseClient{
 		
 		return null;
 	}
+	public VersionInfo versionInfo2() throws Exception {
+		
+		return null;
+	}
 	
 	public ExecutionResult getResult(CubeMessageBody messageBody) throws IOException {
 		ensureState();
