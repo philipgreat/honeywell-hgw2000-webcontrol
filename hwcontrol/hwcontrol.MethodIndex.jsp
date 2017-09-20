@@ -24,7 +24,7 @@
 	margin: 0; height: 100%
 }
 .content {
-	width: 70%; 	height: 630px; 	text-align: center; 	
+	width: 70%; 	overflow:auto;
 	#border: 1px solid grey; 
 	#padding-top: 800px;
 	float:right; 	background: #ffffff;

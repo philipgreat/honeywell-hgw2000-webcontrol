@@ -2,5 +2,5 @@ eclipse.preferences.version=1
 encoding//doc/currentDevice=GBK
 encoding//src/com/terapico/naf/InvokeHelper.java=UTF-8
 encoding//src/hwcontrol=UTF-8
-encoding//src/hwcontrol/HGW2000Controller.java=GBK
+encoding//src/hwcontrol/HGW2000Controller.java=UTF-8
 encoding//unittesting/testing/HGW2000Test.java=GB18030

@@ -10,11 +10,9 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
-import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 
 import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -56,7 +54,12 @@ public class CubeConnection {
 	public void setInputStream(InputStream inputStream) {
 		this.inputStream = inputStream;
 	}
-
+	
+	public boolean isClosed(){
+		
+		return this.sock.isClosed();
+		
+	}
 	private void close() {
 		// TODO Auto-generated method stub
 
@@ -122,13 +125,16 @@ public class CubeConnection {
 	protected CubeReponseBody unpack(String jsonString) throws JsonParseException, JsonMappingException, IOException{
 		
 		ObjectMapper mapper = new ObjectMapper();
-		return mapper.readValue(jsonString, CubeReponseBody.class);
-		
-		
+		CubeReponseBody body = mapper.readValue(jsonString, CubeReponseBody.class);
+		body.setResponsText(jsonString);
+		return body;
 	}
+	
+	
+	
 	protected synchronized CubeReponseBody execute(CubeMessageBody body)
 			throws IOException {
-
+		
 		synchronized (this.getOutputStream()) {
 			this.getOutputStream().write(CubeMessage.pack(body));
 			

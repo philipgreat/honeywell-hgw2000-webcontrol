@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.challenge.cube.CubeClient;
+
 import hwcontrol.ExecutionResult;
 import hwcontrol.HomeControl;
 import hwcontrol.HomeControlAPI;
@@ -46,7 +48,7 @@ public class InvokeServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HomeControlAPI test = HomeControl.instance();
+		CubeClient test = CubeClient.instance();
 		
 		logInfo(request.getRequestURI());
 		BaseInvokeResult result =helper.getResult(test,request, response);

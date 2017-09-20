@@ -7,6 +7,15 @@ public class CubeReponseBody {
 	private int errorCode = Integer.MAX_VALUE;
 	private String action;
 	private String subaction;
+	
+	private String responsText;
+	
+	public String getResponsText() {
+		return responsText;
+	}
+	public void setResponsText(String responsText) {
+		this.responsText = responsText;
+	}
 	public int getErrorCode() {
 		return errorCode;
 	}
