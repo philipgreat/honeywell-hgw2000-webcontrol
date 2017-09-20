@@ -154,9 +154,10 @@ public class CubeClient extends BaseClient{
 		return getResult(null);
 	}
 
-	public ExecutionResult controlScenario(int scenarioId) throws IOException {
+	public ExecutionResult controlScenario(String scenarioId) throws IOException {
 		
-		return getResult(null);
+		CubeMessageBody body = new CubeMessageBody().buildSetScenario(scenarioId,"123456");
+		return getResult(body);
 	}
 
 	public ExecutionResult queryScenario(int areaid) throws IOException {
@@ -203,7 +204,8 @@ public class CubeClient extends BaseClient{
 		} catch (IOException e) {
 			// 连接失败了，重置connection，这样有机会重新连接
 			connection = null;
-			return;
+			throw e;
+			//return;
 		}
 		String cudeId = username;
 		//String password = "12345";

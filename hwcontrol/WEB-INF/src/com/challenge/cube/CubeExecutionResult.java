@@ -8,7 +8,7 @@ public class CubeExecutionResult extends ExecutionResult {
 		exectionTime=System.currentTimeMillis()-exectionTime;
 		//this.receivedResponse = receivedResponse;
 		this.responseBody = receivedResponse;
-		this.receivedResponse = receivedResponse.getAction();
+		this.receivedResponse = receivedResponse.getResponsText();
 		//this.receivedResponse = receivedResponse
 		
 	}

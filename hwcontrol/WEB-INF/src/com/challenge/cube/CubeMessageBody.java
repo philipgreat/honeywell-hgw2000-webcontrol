@@ -790,12 +790,12 @@ body
 "primaryid":1,
  "switchstatus":"on/off",
 }*/
-	public CubeMessageBody buildSetScenarioStatus(String priamaryId, String status){
+	public CubeMessageBody buildSetScenarioStatus(String primaryId, String status){
 		return msgBody().withAction("request")
 				.withSubaction("configdevice")
 				.withModuletype("scenariotrigger")
-				.withPrimaryid(priamaryId)
-				.withStatus(status)
+				.withPrimaryid(primaryId)
+				.withSwitchstatus(status)
 				.done();
 	}
 	
@@ -821,7 +821,28 @@ body
 
 	 * 
 	 * */
+	/*
+	 * 
+	 * {
+“msgid”:”2387r958273894”                                                                                                  
+“action”:”request”
+“subaction”:” setdevice”
+“moduletype”:” scenario”
+“scenarioid":10
+“securitypwd”:”1123445”
+ }
+
+	 * 
+	 * */
 	
+	public CubeMessageBody buildSetScenario(String scenarioId, String password){
+		return msgBody().withAction("request")
+				.withSubaction("setdevice")
+				.withModuletype("scenario")
+				.withScenarioid(scenarioId)
+				.withSecuritypwd(password)
+				.done();
+	}
 	
 	private CubeMessageBody withDeviceMap(String deviceMap) {
 		// TODO Auto-generated method stub
@@ -930,6 +951,7 @@ body
 	//public CubeMessageBody with(String value){ addProperty("", value); return this;}
 	public CubeMessageBody withFanspeed(String value){ addProperty("fanspeed", value); return this;}
 	public CubeMessageBody withStatus(String value){ addProperty("status", value); return this;}
+	public CubeMessageBody withSwitchstatus(String value){ addProperty("switchstatus", value); return this;}
 	//public CubeMessageBody with(String value){ addProperty("", value); return this;}
 	public CubeMessageBody withOpenclosepercent(String value){ addProperty("openclosepercent", value); return this;}
 	public CubeMessageBody withZonetype(String value){ addProperty("zonetype", value); return this;}
