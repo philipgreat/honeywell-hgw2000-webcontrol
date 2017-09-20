@@ -243,9 +243,10 @@ public class CubeClient extends BaseClient{
 		
 		return null;
 	}
-	public VersionInfo versionInfo2() throws Exception {
+	public ExecutionResult versionInfo2() throws Exception {
 		
-		return null;
+		CubeMessageBody body = new CubeMessageBody().buildGetConfig();
+		return getResult(body);
 	}
 	
 	public ExecutionResult getResult(CubeMessageBody messageBody) throws IOException {
