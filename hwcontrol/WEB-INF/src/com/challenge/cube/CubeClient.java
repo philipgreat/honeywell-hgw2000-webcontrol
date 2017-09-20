@@ -233,6 +233,12 @@ public class CubeClient extends BaseClient{
 		return getResult(body);
 	}
 	
+	public ExecutionResult viewCubeConfig() throws IOException {
+		
+		CubeMessageBody body = new CubeMessageBody().buildGetConfig();
+		return getResult(body);
+	}
+	
 	public VersionInfo versionInfo() throws Exception {
 		
 		return null;
