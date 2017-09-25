@@ -29,7 +29,7 @@ public class CubeConnection {
 	private OutputStream outputStream;
 	private InputStream inputStream;
 
-	private HeartBeatThread heartbeatThread;
+	private HeartbeatThread heartbeatThread;
 	private HeartbeatInfo    heartbeatInfo;
 	public int getTimeOutInSeconds() {
 		return timeOutInSeconds;
@@ -108,7 +108,7 @@ public class CubeConnection {
 		// CubeMessage message = new CubeMessage();
 		CubeMessageBody body = new CubeMessageBody().buildHeartbeat();
 
-		return execute(body);
+		return executeInternal(body);
 
 	}
 
@@ -130,9 +130,14 @@ public class CubeConnection {
 		return body;
 	}
 	
-	
-	
 	protected synchronized CubeReponseBody execute(CubeMessageBody body)
+			throws IOException{
+		
+		return this.executeInternal(body);
+		
+	}
+	
+	protected synchronized CubeReponseBody executeInternal(CubeMessageBody body)
 			throws IOException {
 		
 		synchronized (this.getOutputStream()) {

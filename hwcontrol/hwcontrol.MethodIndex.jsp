@@ -21,7 +21,7 @@
 	float:left; 	
 	font-size: 20px; text-align: left; 	padding-left: 30px;
 	padding-top: 30px; 	background: #eeeeee; 	overflow:auto;
-	margin: 0; height: 100%
+	margin: 0; height: 80%
 }
 .content {
 	width: 70%; 	overflow:auto;

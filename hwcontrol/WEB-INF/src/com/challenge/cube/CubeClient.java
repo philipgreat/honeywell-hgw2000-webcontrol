@@ -13,6 +13,8 @@ public class CubeClient extends BaseClient{
 	
 	private CubeConnection connection;
 	
+
+	
 	public static void main(String[] args) {
 		
 
@@ -34,9 +36,10 @@ public class CubeClient extends BaseClient{
 		return null;
 	}
 
-	public String viewScreenLog() throws IOException {
-		
-		return null;
+	public String viewLog() throws IOException {
+
+		return loadStringFromFile("/home/hi/honeywell.log");
+
 	}
 	
 	public ExecutionResult querySparkLight(String maskId, String loopId, String deviceId)
@@ -58,13 +61,13 @@ public class CubeClient extends BaseClient{
 		
 		return getResult(null);
 	}
-
+	/*
 	public ExecutionResult controlInfradRedAirCondition(int id, int irid)
 			throws IOException {
 		
 		return getResult(null);
 	}
-
+*/
 	public ExecutionResult controlUFHeat(int id, int onOrOff, int tempToSet)
 			throws IOException {
 		
@@ -216,11 +219,19 @@ public class CubeClient extends BaseClient{
 				conn.execute(new CubeMessageBody().buildSetSparkLightRelayStatus("1", "1", "2", "on"))
 				};
 		*/
-		connection.auth(cudeId, password);
-		
+		CubeReponseBody body = connection.auth(cudeId, password);
+		if(body.getErrorCode() != 0 ){
+			connection = null;
+			throw new IllegalArgumentException("连上了Cube网关，但是用户名"+username+"+密码的组合没有得到认证, 请获得正确信息后"
+					+ "修改/opt/resin/conf/cube.conf");
+		}
+		//认证完成启动心跳线程
+		heartbeatInfo = new HeartbeatInfo();
+		HeartbeatThread thread = new HeartbeatThread(heartbeatInfo, connection);
+		thread.start();
 		
 	}
-
+	protected HeartbeatInfo heartbeatInfo;
 	public ExecutionResult controlLight(int lightId, int action, int onOrOff, int dimmer) throws IOException {
 		
 		return getResult(null);
@@ -248,7 +259,21 @@ public class CubeClient extends BaseClient{
 		CubeMessageBody body = new CubeMessageBody().buildGetConfig();
 		return getResult(body);
 	}
-	
+	protected void notifyHearbeatThread(){
+		
+		
+	}
+	protected void emitHeartbeat() throws IOException{
+		if(connection==null){
+			
+			
+			return;
+		}
+		CubeMessageBody messageBody = new CubeMessageBody().buildHeartbeat();
+		CubeReponseBody reponse = connection.execute(messageBody);
+		
+		
+	}
 	public ExecutionResult getResult(CubeMessageBody messageBody) throws IOException {
 		ensureState();
 		
@@ -258,6 +283,9 @@ public class CubeClient extends BaseClient{
 			result.setReceivedResponse("该功能暂时没有实现,25");
 			result.setWebCommand("空的命令");
 			return result;
+		}
+		if(heartbeatInfo!=null){
+			heartbeatInfo.wakeup();
 		}
 		
 		this.logln(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+messageBody.getBody());
@@ -272,8 +300,9 @@ public class CubeClient extends BaseClient{
 			return result;
 		}catch(IllegalArgumentException e){
 			//发生这个错误是因为
-			result.setWebResult("网关通信错误，返回了不认识的协议头，连接讲关闭重启");
-			
+			String message = "网关通信错误，返回了不认识的协议头，连接讲关闭重启";
+			result.setWebResult(message);
+			this.logln(message);
 			this.connect();
 			return result;
 		}
