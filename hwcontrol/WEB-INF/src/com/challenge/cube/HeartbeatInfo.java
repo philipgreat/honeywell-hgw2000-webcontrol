@@ -1,7 +1,7 @@
 package com.challenge.cube;
 
 public class HeartbeatInfo {
-	private int sleepTime = 120*1000;//in milionseconds
+	private int sleepTime = 60*1000;//in milionseconds
 	
 	
 	//return 0 - timeout
