@@ -292,6 +292,7 @@ public class CubeClient extends BaseClient{
 		
 		result.setSentCommand(messageBody.getBody());
 		
+		
 		try{
 			CubeReponseBody reponse = connection.execute(messageBody);
 			//result.set
