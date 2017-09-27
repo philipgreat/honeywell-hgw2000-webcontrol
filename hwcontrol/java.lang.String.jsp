@@ -9,5 +9,10 @@
 </style>
 
 <div class="message">
-	java.lang.String: ${result}
+		<textarea rows="20" cols="80">
+				
+				${result}
+				
+				</textarea>
+	
 </div>
