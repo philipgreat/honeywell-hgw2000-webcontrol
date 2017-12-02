@@ -21,8 +21,9 @@ public class CubeMsgBodySerializer extends JsonSerializer<CubeMessageBody> {
 			writeStringField(jgen,property.getPropertyName(), property.getPropertyValue());
 		}
 		
+		writeLoopMapField("deviceloopmap",body.getDeviceLoopMap(),body,jgen);
+		writeLoopMapField("keytypeloop",body.getKeyTypeLoopMap(),body,jgen);
 		
-		writeDeviceLoopMapField(body,jgen);
 		
 		jgen.writeEndObject();
 		
@@ -33,21 +34,20 @@ public class CubeMsgBodySerializer extends JsonSerializer<CubeMessageBody> {
 		jgen.writeStringField(propertyName, propertyValue.getStringExpr());
 		
 	}
-	
-	private void writeDeviceLoopMapField(CubeMessageBody body, JsonGenerator jgen) throws IOException {
+	private void writeLoopMapField(String fieldName, List<CubeLoop> loopMap, CubeMessageBody body, JsonGenerator jgen) throws IOException {
 		//jgen.writeStringField("deviceloopmap", propertyValue.getStringExpr());
 		//jgen.writeFieldName("deviceloopmap");
 		
-		List<CubeLoop> deviceLoopMap = body.getDeviceLoopMap();
-		if(deviceLoopMap == null){
+		List<CubeLoop> deviceLoopMap = loopMap;
+		if(loopMap == null){
 			return;//do nothing when null found for this field.
 		}
 		//writeNumberField(jgen, "patientInfoCount",patientInfoList.getTotalCount());
 
-		if(deviceLoopMap.isEmpty()){
+		if(loopMap.isEmpty()){
 			return;//do nothing when no elements found for this field.
 		}
-		jgen.writeFieldName("deviceloopmap");
+		jgen.writeFieldName(fieldName);
 		jgen.writeStartArray();
 		
 		for(CubeLoop loop: deviceLoopMap){
@@ -61,6 +61,7 @@ public class CubeMsgBodySerializer extends JsonSerializer<CubeMessageBody> {
 		}
 		jgen.writeEndArray();
 	}
+	
 
 	/*
 	protected void writePatientInfoList(String fieldName, CommunityUser communityUser, JsonGenerator jgen,SerializerProvider provider)throws IOException,

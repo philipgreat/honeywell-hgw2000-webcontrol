@@ -13,7 +13,15 @@ public class CubeMessageBody {
 	int length = 0;
 	byte[] body ;
 	List<CubeLoop> deviceLoopMap;
+	List<CubeLoop> keyTypeLoopMap;
 	
+	
+	public List<CubeLoop> getKeyTypeLoopMap() {
+		return keyTypeLoopMap;
+	}
+	public void setKeyTypeLoopMap(List<CubeLoop> keyTypeLoopMap) {
+		this.keyTypeLoopMap = keyTypeLoopMap;
+	}
 	public List<CubeLoop> getDeviceLoopMap() {
 		return deviceLoopMap;
 	}
@@ -26,7 +34,15 @@ public class CubeMessageBody {
 		loop.setParent(this);
 		return this.addLoop(loop);
 	}
+	
+	public CubeLoop newKeyTypeLoop(){
+		CubeLoop loop = new CubeLoop();
+		loop.setParent(this);
+		return this.addKeyTypeLoop(loop);
+	}
+	
 	protected void ensureLoopList(){
+		
 		if(deviceLoopMap == null){
 			deviceLoopMap =  new ArrayList<CubeLoop>();
 		}
@@ -36,6 +52,18 @@ public class CubeMessageBody {
 		ensureLoopList();
 		this.getDeviceLoopMap().add(cubeLoop);
 		return cubeLoop;
+	}
+	
+	protected CubeLoop addKeyTypeLoop(CubeLoop cubeLoop){
+		ensureaddKeyTypeLoop();
+		this.getKeyTypeLoopMap().add(cubeLoop);
+		return cubeLoop;
+	}
+	private void ensureaddKeyTypeLoop() {
+		if(keyTypeLoopMap == null){
+			keyTypeLoopMap =  new ArrayList<CubeLoop>();
+		}
+		
 	}
 	public CubeMessageBody(){
 		
@@ -740,6 +768,17 @@ body
 				.done();
 	}
 	
+	
+	public CubeMessageBody buildSetBackAudioStatus(String loopId, String serial,  String keytype, String keyvalue ){
+		return msgBody().withAction("request")
+				.withSubaction("setdevice")
+				.withModuletype("backaudio")
+				.withLoopid(loopId)
+				.withModuleserialnum(serial)
+				.newKeyTypeLoop()
+					.withKeytype(keytype).withKeyvalue(keyvalue).parent().done();
+				
+	}
 	
 	
 	

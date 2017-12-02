@@ -203,16 +203,22 @@ public class CubeConnection {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
+		/*
 		String ipAddress = "192.168.0.104";
+		String cudeId = "001F552A0562";
+		String password = "12345";
+		int port = 9000;
+		*/
+		String ipAddress = "114.252.61.176";
+		String cudeId = "001F552A051C";
+		String password = "12345";
 		int port = 9000;
 		CubeConnection conn = new CubeConnection(ipAddress, port);
 		conn.connect();
-		String cudeId = "001F552A0562";
-		String password = "12345";
+		
 		CubeReponseBody bodys[] = {conn.auth(cudeId, password),
-				conn.getConfig(),conn.heartbeat(),
-				conn.execute(new CubeMessageBody().buildSetSparkLightStatus("1", "2", "4", "0", "off")),
-				conn.execute(new CubeMessageBody().buildSetSparkLightRelayStatus("1", "1", "2", "on"))
+				
+				conn.execute(new CubeMessageBody().buildSetBackAudioStatus("1", "4241660241b180ce", "volumn1", "22"))
 				};
 		
 		

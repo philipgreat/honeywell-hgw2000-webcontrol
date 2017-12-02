@@ -9,7 +9,7 @@
 </style>
 
 <div class="message">
-		<textarea rows="20" cols="80">
+		<textarea rows="30" cols="80">
 				
 				${result}
 				

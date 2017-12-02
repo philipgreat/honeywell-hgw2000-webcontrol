@@ -140,7 +140,7 @@ public class CubeLoop {
 	public CubeLoop withScenarioid(String value){ addProperty("scenarioid", value); return this;}
 	public CubeLoop withPrimaryid(String value){ addProperty("primaryid", value); return this;}
 	public CubeLoop withResponseprimaryid(String value){ addProperty("responseprimaryid", value); return this;}
-	public CubeLoop withKeytype(String value){ addProperty("Keytype", value); return this;}
+	public CubeLoop withKeytype(String value){ addProperty("keytype", value); return this;}
 	//spublic CubeLoop withKeyvalue(String value){ addProperty("keyvalue", value); return this;}
 	public CubeLoop withSecurityscenarioid(String value){ addProperty("securityscenarioid", value); return this;}
 	public CubeLoop withCallsessionid(String value){ addProperty("callsessionid", value); return this;}

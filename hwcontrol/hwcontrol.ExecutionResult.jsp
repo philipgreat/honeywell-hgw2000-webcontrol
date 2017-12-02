@@ -21,7 +21,7 @@
 </div>
 <hr/>
 <div>
-<textarea rows="20" cols="80">
+<pre >
 
         错误码 说明
         0 成功
@@ -63,7 +63,7 @@
         601 视频播放出错
         700 无法读取房间设备数据
 
-</textarea>
+</pre>
 </div>
 
 
